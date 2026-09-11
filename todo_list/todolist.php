@@ -20,12 +20,19 @@ if(isset($_POST['descricao']) && !empty(trim($_POST['descricao']))) {
     $descricao = $conn -> real_escape_string($_POST['descricao']);
     $sqlCreate = "INSERT INTO tarefas (descricao) VALUES ('$descricao')";
 
-    if($conn -> query($sqlCreate) === TRUE) {
+    if($conn -> query($sqlCreate) == TRUE) {
         header("location: todolist.php");
 }
 }
 # Exclusão de tarefas
+if(isset($_GET['delete'])){
+    $id = intval($_GET['delete']);
+    $sqlDelete = "DELETE FROM tarefas WHERE id = $id";
 
+    if($conn -> query($sqlDelete) == TRUE) {
+        header("location: todolist.php");
+}
+}
 
 $tarefas=[]; 
 # Listar tarefas
@@ -64,6 +71,7 @@ $sqlSelect = "SELECT * FROM tarefas ORDER BY data_criacao DESC";
         <?php foreach($tarefas as $tarefa):?>
             <li>
                 <?php echo $tarefa['descricao']?>
+                <a href="todolist.php?delete=<?php echo $tarefa['id']?>">Excluir</a>
             </li>
             <?php endforeach ?>    
         </ul>
