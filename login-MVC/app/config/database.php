@@ -4,11 +4,8 @@ class Database{
     private $host = 'localhost';
     private $username = 'root';
     private $senha = '';
-<<<<<<< HEAD
     private $banco = 'login';
-=======
-    private $banco = 'todo_list';
->>>>>>> 5a48a9264a9157fdc502d4b3cece2b074d3b6418
+
 
     public $conn = '';
 
@@ -19,10 +16,5 @@ class Database{
         }
         return $this->conn;
     }
-
-
 }
-
-
-
 ?>
